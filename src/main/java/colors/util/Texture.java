@@ -1,8 +1,9 @@
 package colors.util;
 
 import colors.Rendering;
+import de.matthiasmann.twl.utils.PNGDecoder;
+import de.matthiasmann.twl.utils.PNGDecoder.Format;
 import org.lwjgl.BufferUtils;
-import org.newdawn.slick.opengl.PNGDecoder;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -75,7 +76,7 @@ public class Texture {
 			int height = dec.getHeight();
 			int width = dec.getWidth();
 			ByteBuffer buffer = BufferUtils.createByteBuffer(height * width * 4);
-			dec.decode(buffer, width * 4, PNGDecoder.RGBA);
+			dec.decode(buffer, width * 4, Format.RGBA);
 			buffer.flip();
 			return new Texture(width, height, buffer);
 		} catch (IOException e) {
