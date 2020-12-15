@@ -1,0 +1,32 @@
+plugins {
+	id 'java-library'
+	id 'application'
+}
+
+group 'color.experiment'
+version '1.0'
+
+//noinspection GroovyUnusedAssignment
+mainClassName = "colors.Starter"
+
+targetCompatibility = 1.11
+sourceCompatibility = 1.11
+
+repositories {
+	mavenCentral()
+}
+
+test {
+	useJUnitPlatform()
+	testLogging {
+		exceptionFormat = 'full'
+	}
+	reports {
+		junitXml.enabled = true
+	}
+}
+
+dependencies {
+	implementation 'org.lwjgl.lwjgl:lwjgl:2.9.3'
+	implementation 'org.l33tlabs.twl:pngdecoder:1.0'
+}
