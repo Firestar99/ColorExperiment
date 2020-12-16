@@ -90,6 +90,7 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 ### custom
+native
 hs_err_pid*.log
 *.iml
 .idea/**/misc.xml

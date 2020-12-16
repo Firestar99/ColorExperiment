@@ -9,8 +9,8 @@ version '1.0'
 //noinspection GroovyUnusedAssignment
 mainClassName = "colors.Starter"
 
-targetCompatibility = 1.11
-sourceCompatibility = 1.11
+targetCompatibility = 1.8
+sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
@@ -26,7 +26,23 @@ test {
 	}
 }
 
+configurations {
+	natives
+}
+
 dependencies {
 	implementation 'org.lwjgl.lwjgl:lwjgl:2.9.3'
+	natives 'org.lwjgl.lwjgl:lwjgl-platform:2.9.3:natives-windows'
+	natives 'org.lwjgl.lwjgl:lwjgl-platform:2.9.3:natives-linux'
+	natives 'org.lwjgl.lwjgl:lwjgl-platform:2.9.3:natives-osx'
+
 	implementation 'org.l33tlabs.twl:pngdecoder:1.0'
+}
+
+task extractNatives(type: Sync) {
+	from { configurations.natives.files.collect { zipTree(it) } }
+	into 'native'
+	include '*.so', '*.dll', '*.dylib'
+
+	tasks.classes.dependsOn delegate
 }
