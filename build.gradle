@@ -46,3 +46,14 @@ task extractNatives(type: Sync) {
 
 	tasks.classes.dependsOn delegate
 }
+
+application.executableDir = ""
+
+applicationDistribution.with {
+	from('native') {
+		into 'native'
+	}
+	from('levels') {
+		into 'levels'
+	}
+}
